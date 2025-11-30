@@ -1,2 +1,5 @@
-# loomwallet.github.io
-The next generation BCH wallet
+# Loom
+
+The next generation BCH wallet.
+
+https://loom.cash
