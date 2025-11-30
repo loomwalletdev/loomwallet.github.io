@@ -1,0 +1,151 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <title>Loom Logo Animation</title>
+  <style>
+    body {
+      background: #000;
+      margin: 0;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      min-height: 100vh;
+    }
+
+    .logo-container {
+      position: relative;
+      width: 400px;
+      height: 400px;
+    }
+
+    /* Texto LOOM - siempre visible */
+    .loom-text {
+      position: absolute;
+      width: 100%;
+      height: 100%;
+    }
+
+    /* SVG del arco animado */
+    .arc-svg {
+      position: absolute;
+      width: 100%;
+      height: 100%;
+    }
+
+    /* El arco que se dibuja */
+    .arc-path {
+      fill: none;
+      stroke: #fff;
+      stroke-width: 19.5;
+      stroke-linecap: butt;
+      /* Longitud total del arco (calculada) */
+      stroke-dasharray: 785;
+      stroke-dashoffset: 785;
+      animation: draw-arc 1.5s ease-out 2.1s forwards;
+    }
+
+    @keyframes draw-arc {
+      to {
+        stroke-dashoffset: 0;
+      }
+    }
+
+    /* Punto/cursor que dibuja */
+    .cursor {
+      position: absolute;
+      width: 13px;
+      height: 13px;
+      background: #fff;
+      /* Mismo path que el arco, escalado al contenedor */
+      offset-path: path('M 40,233.33 A 160,160 0 0 1 360,233.33');
+      offset-anchor: center;
+      offset-rotate: 0deg;
+      offset-distance: 0%;
+      animation: blink 1.8s steps(1) 0.3s, move-cursor 1.5s ease-out 2.1s forwards;
+    }
+
+    @keyframes blink {
+      0% { opacity: 1; }
+      16.67% { opacity: 0; }
+      33.33% { opacity: 1; }
+      50% { opacity: 0; }
+      66.67% { opacity: 1; }
+      83.33% { opacity: 0; }
+      100% { opacity: 1; }
+    }
+
+    @keyframes move-cursor {
+      0% {
+        opacity: 0;
+      }
+      100% {
+        opacity: 0;
+      }
+    }
+
+    /* Replay button */
+    .replay {
+      position: fixed;
+      bottom: 40px;
+      background: #333;
+      color: #fff;
+      border: none;
+      padding: 10px 20px;
+      cursor: pointer;
+      font-family: sans-serif;
+      border-radius: 4px;
+    }
+    .replay:hover {
+      background: #555;
+    }
+  </style>
+</head>
+<body>
+  <div class="logo-container">
+    <!-- Texto LOOM -->
+    <svg class="loom-text" viewBox="0 0 600 600">
+      <rect width="600" height="600" fill="#000"/>
+      <g transform="matrix(0.1,0,0,-0.1,-213.775,887.60087)" fill="#fff">
+        <!-- Primera O -->
+        <path d="m 4200,4850 a 565,565 0 1 1 0,-1130 565,565 0 1 1 0,1130 z m 0,-195 a 370,370 0 1 0 0,-740 370,370 0 1 0 0,740 z"/>
+        <!-- Segunda O -->
+        <path d="m 5630,4850 a 565,565 0 1 1 0,-1130 565,565 0 1 1 0,1130 z m 0,-195 a 370,370 0 1 0 0,-740 370,370 0 1 0 0,740 z"/>
+        <!-- L -->
+        <path d="m 2637,4285 3,-560 365,-3 365,-2 v 93 92 h -270 -270 v 470 470 h -97 -98 z"/>
+        <!-- M -->
+        <path d="m 6480,4283 v -563 l 97,2 98,2 3,393 2,393 101,-185 c 55,-102 139,-258 186,-348 47,-90 89,-160 93,-155 4,4 54,94 110,198 56,105 139,257 184,338 l 81,148 3,-393 2,-393 100,3 100,3 v 560 559 h -123 -122 l -165,-330 c -91,-181 -167,-330 -170,-330 -3,0 -79,149 -169,330 l -164,330 h -124 -123 z"/>
+      </g>
+    </svg>
+
+    <!-- Arco animado -->
+    <svg class="arc-svg" viewBox="0 0 600 600">
+      <!-- Semicírculo de izquierda a derecha (sentido horario) -->
+      <path class="arc-path" d="M 60,350 A 240,240 0 0 1 540,350"/>
+    </svg>
+
+    <!-- Punto que dibuja el arco -->
+    <div class="cursor"></div>
+  </div>
+
+  <button class="replay" onclick="replay()">Replay</button>
+
+  <script>
+    function replay() {
+      const arc = document.querySelector('.arc-path');
+      const cursor = document.querySelector('.cursor');
+
+      // Reset animations
+      arc.style.animation = 'none';
+      cursor.style.animation = 'none';
+
+      // Trigger reflow
+      arc.offsetHeight;
+      cursor.offsetHeight;
+
+      // Restart animations
+      arc.style.animation = 'draw-arc 1.5s ease-out 2.1s forwards';
+      cursor.style.animation = 'blink 1.8s steps(1) 0.3s, move-cursor 1.5s ease-out 2.1s forwards';
+    }
+  </script>
+</body>
+</html>
