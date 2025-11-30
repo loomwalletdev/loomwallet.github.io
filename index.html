@@ -1,13 +1,17 @@
 <!DOCTYPE html>
 <html>
 <head>
-  <title>Loom - The next generation BCH wallet</title>
+  <title>Loom - Next gen BCH wallet</title>
   <link rel="icon" type="image/svg+xml" href="favicon.svg">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@300&display=swap" rel="stylesheet">
   <style>
     body {
       background: #000;
       margin: 0;
       display: flex;
+      flex-direction: column;
       justify-content: center;
       align-items: center;
       min-height: 100vh;
@@ -84,7 +88,34 @@
       }
     }
 
-      </style>
+    .tagline {
+      font-family: 'Montserrat', sans-serif;
+      font-weight: 300;
+      color: #fff;
+      font-size: 14px;
+      letter-spacing: 0.3em;
+      margin-top: -30px;
+      opacity: 0;
+      animation: fade-in 1.5s ease-out 3.8s forwards;
+    }
+
+    .coming-soon {
+      font-family: 'Montserrat', sans-serif;
+      font-weight: 300;
+      color: #888;
+      font-size: 11px;
+      letter-spacing: 0.2em;
+      margin-top: 20px;
+      opacity: 0;
+      animation: fade-in 1.5s ease-out 5.3s forwards;
+    }
+
+    @keyframes fade-in {
+      to {
+        opacity: 1;
+      }
+    }
+  </style>
 </head>
 <body>
   <div class="logo-container">
@@ -113,5 +144,7 @@
     <div class="cursor"></div>
   </div>
 
-  </body>
+  <div class="tagline">NEXT GEN BCH WALLET</div>
+  <div class="coming-soon">COMING 2026</div>
+</body>
 </html>

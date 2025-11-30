@@ -1,5 +1,11 @@
-# Loom
+<p align="center">
+  <img src="loom.svg" width="200" alt="Loom">
+</p>
 
-The next generation BCH wallet.
+<p align="center">
+  Next gen BCH wallet.
+</p>
 
-https://loom.cash
+<p align="center">
+  <a href="https://loom.cash">loom.cash</a>
+</p>
